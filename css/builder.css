@@ -1,0 +1,173 @@
+.builder-container {
+  display: flex; gap: 2rem; padding: 2rem; max-width: 1400px; margin: 0 auto;
+  min-height: calc(100vh - 80px);
+}
+.form-panel { flex: 1; background: var(--surface); padding: 2rem; border-radius: var(--radius); box-shadow: var(--shadow); overflow-y: auto; max-height: 90vh; }
+.preview-panel { flex: 1.2; display: flex; flex-direction: column; align-items: center; }
+.preview-controls { display: flex; gap: 1rem; margin-bottom: 1.5rem; width: 100%; justify-content: space-between; }
+.preview-controls select {
+  padding: 0.6rem; border-radius: 8px; border: 2px solid var(--border); background: var(--surface); color: var(--text);
+}
+.a4-preview {
+  width: 100%; max-width: 210mm; aspect-ratio: 210/297;
+  background: white; box-shadow: var(--shadow); border-radius: 8px;
+  padding: 40px; overflow-y: auto; position: relative;
+  color: #0f172a; /* Force dark text for PDF accuracy */
+}
+
+.section { margin-bottom: 1.5rem; }
+.section label { display: block; margin-bottom: 0.4rem; font-weight: 600; }
+.section input, .section textarea, .dynamic-entry input {
+  width: 100%; padding: 0.8rem; border: 2px solid var(--border); border-radius: 8px;
+  background: var(--bg); color: var(--text); margin-bottom: 0.5rem;
+}
+.photo-box {
+  width: 80px; height: 80px; border-radius: 50%; border: 3px dashed var(--border);
+  margin: 0.5rem 0; display: flex; align-items: center; justify-content: center; overflow: hidden;
+  background-size: cover; background-position: center;
+}
+.dynamic-entry { display: flex; gap: 0.5rem; margin-bottom: 0.5rem; }
+.btn-remove { background: #ef4444; color: white; padding: 0 0.8rem; border: none; border-radius: 8px; cursor: pointer; }
+.btn-add { background: var(--primary); color: white; padding: 0.5rem 1rem; border: none; border-radius: 8px; cursor: pointer; font-size: 0.9rem; }
+
+/* Template 1 Base Styles (Injected dynamically) */
+.resume-h1 { font-size: 1.8rem; margin-bottom: 0.2rem; }
+.resume-h2 { font-size: 1rem; color: #475569; margin-bottom: 1rem; }
+.resume-section { margin-bottom: 1.2rem; border-bottom: 1px solid #cbd5e1; padding-bottom: 0.8rem; }
+.resume-section h3 { font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; color: #1e293b; margin-bottom: 0.5rem; }
+.resume-item { margin-bottom: 0.5rem; }
+.resume-item strong { display: block; }
+.skills-grid { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.skill-tag { background: #e0e7ff; color: #3730a3; padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.85rem; }
+
+/* PDF Optimization */
+.a4-preview {
+  page-break-after: avoid;
+  page-break-inside: avoid;
+  overflow: hidden !important;
+}
+
+.a4-preview * {
+  page-break-after: auto;
+  page-break-before: auto;
+  page-break-inside: avoid;
+}
+
+/* Prevent blank pages in PDF */
+.resume-template-1,
+.resume-template-2,
+.resume-template-3,
+.resume-template-4,
+.resume-template-5,
+.resume-template-6 {
+  page-break-after: avoid;
+  page-break-inside: avoid;
+  break-after: avoid;
+  break-inside: avoid;
+}
+
+/* Hide elements in PDF if needed */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  body * {
+    visibility: hidden;
+  }
+  
+  #resume-preview, #resume-preview * {
+    visibility: visible;
+  }
+  
+  #resume-preview {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 210mm;
+    height: 297mm;
+    margin: 0;
+    padding: 15mm;
+    box-shadow: none;
+  }
+}
+
+/* Contact Info Responsive Fix */
+.contact-info-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem 0 1.5rem;
+  color: #64748b;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+/* ===== 📱 BUILDER MOBILE RESPONSIVE FIX ===== */
+@media (max-width: 900px) {
+  /* Stack panels vertically */
+  .builder-container {
+    flex-direction: column;
+    padding: 1rem;
+    gap: 1.5rem;
+  }
+
+  /* Preview first, form below */
+  .preview-panel { order: 1; width: 100%; }
+  .form-panel   { order: 2; width: 100%; max-height: none; padding: 1.2rem; }
+
+  /* Full-width controls */
+  .preview-controls {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+  .preview-controls select,
+  .preview-controls .btn {
+    width: 100%;
+  }
+
+  /* Fix resume preview box */
+  .a4-preview {
+    width: 100%;
+    max-width: 100%;
+    aspect-ratio: auto;
+    min-height: 450px;
+    padding: 15px;
+    overflow-x: auto;
+    border-radius: 8px;
+  }
+
+  /* Mobile-friendly form inputs */
+  .section input,
+  .section textarea,
+  .dynamic-entry input {
+    font-size: 16px; /* iOS zoom fix */
+    padding: 0.75rem;
+  }
+
+  /* Stack dynamic fields vertically */
+  .dynamic-entry {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .dynamic-entry input { width: 100%; }
+  .btn-remove {
+    align-self: flex-end;
+    margin-top: -0.3rem;
+  }
+
+  /* Photo preview center on mobile */
+  .photo-box {
+    margin: 0.5rem auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-info-container {
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+  }
+}

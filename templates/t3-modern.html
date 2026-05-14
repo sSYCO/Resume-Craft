@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Template Preview</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Helvetica', Arial, sans-serif; padding: 40px; background: #f8fafc; }
+        .resume { max-width: 800px; margin: 0 auto; background: white; padding: 40px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+        .header { text-align: center; margin-bottom: 40px; }
+        .name { font-size: 2rem; font-weight: 300; letter-spacing: 3px; margin-bottom: 8px; color: #0f172a; }
+        .title { font-size: 1rem; color: #94a3b8; letter-spacing: 2px; margin-bottom: 20px; }
+        .contact { display: flex; justify-content: center; gap: 25px; color: #64748b; font-size: 0.9rem; }
+        .section { margin-bottom: 30px; padding-left: 30px; border-left: 3px solid #6366f1; }
+        .section h3 { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; color: #6366f1; margin-bottom: 15px; }
+        .item { margin-bottom: 12px; }
+        .item div:first-child { font-weight: 600; color: #0f172a; }
+        .item div:last-child { color: #64748b; font-size: 0.9rem; }
+        p { color: #475569; line-height: 1.7; }
+    </style>
+</head>
+<body>
+    <div class="resume">
+        <div class="header">
+            <h1 class="name">MICHAEL CHEN</h1>
+            <p class="title">DATA SCIENTIST</p>
+            <div class="contact">
+                <span>📧 michael.chen@example.com</span>
+                <span>📱 +1 987 654 3210</span>
+                <span>📍 San Francisco, CA</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>Profile</h3>
+            <p style="font-size: 1rem;">Data scientist with expertise in machine learning, statistical analysis, and big data. Passionate about turning data into actionable insights.</p>
+        </div>
+
+        <div class="section">
+            <h3>Education</h3>
+            <div class="item">
+                <div>MS Data Science</div>
+                <div>Stanford University • 2019-2021</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>Experience</h3>
+            <div class="item">
+                <div>Data Scientist</div>
+                <div>AI Labs • 2021-Present</div>
+            </div>
+            <div class="item">
+                <div>Data Analyst</div>
+                <div>Tech Giants • 2019-2021</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>Skills</h3>
+            <p>Python, R, TensorFlow, SQL, Machine Learning, Deep Learning, Data Visualization</p>
+        </div>
+    </div>
+</body>
+</html>

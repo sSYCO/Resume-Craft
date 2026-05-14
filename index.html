@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ResumeCraft | Professional Resume Maker</title>
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/auth.css">
+    <link rel="stylesheet" href="css/preview-modal.css">
+    <link rel="stylesheet" href="css/preview.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- ✅ Firebase SDKs - MUST LOAD FIRST -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+
+</head>
+
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="logo">Resume<span>Craft</span></div>
+        <div class="nav-actions">
+            <div class="nav-links" id="nav-links">
+                <a href="#templates">Templates</a>
+                <a href="#how-to-use">How to Use</a>
+                <a href="#about">About Us</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <button id="theme-toggle" aria-label="Toggle Theme"><i class="fa-regular fa-moon"></i></button>
+            <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Menu">☰</button>
+            <a href="auth.html" class="btn btn-outline" id="login-btn">Login / Signup</a>
+            <button id="logout-btn" class="btn btn-outline" style="display: none;">Logout</button>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header class="hero">
+        <h1>Build Your <span class="highlight">Professional Resume</span> in Minutes</h1>
+        <p>Choose a trending template, fill your details, and download a ready-to-use PDF.</p>
+        <a href="builder.html" class="btn btn-primary" id="start-btn">Start Building</a>
+    </header>
+
+    <!-- TEMPLATES SECTION -->
+    <section id="templates" class="templates-preview">
+        <h2>Choose Your Template</h2>
+        <p class="subtext">Click any template to preview. Login required to generate & download.</p>
+        <div class="template-grid" id="guest-templates"></div>
+    </section>
+
+    <!-- HOW TO USE SECTION -->
+    <section id="how-to-use" class="info-section">
+        <h2>How to Use ResumeCraft</h2>
+        <div class="steps-grid">
+            <div class="step-card fade-up">
+                <div class="step-number">1</div>
+                <h3>Choose Template</h3>
+                <p>Browse our 6 professional templates and pick the one that fits your style.</p>
+            </div>
+            <div class="step-card fade-up" style="animation-delay: 0.1s">
+                <div class="step-number">2</div>
+                <h3>Login / Signup</h3>
+                <p>Create a free account with Firebase to unlock the resume builder.</p>
+            </div>
+            <div class="step-card fade-up" style="animation-delay: 0.2s">
+                <div class="step-number">3</div>
+                <h3>Fill Your Details</h3>
+                <p>Enter your info, education, experience, and skills in the easy form.</p>
+            </div>
+            <div class="step-card fade-up" style="animation-delay: 0.3s">
+                <div class="step-number">4</div>
+                <h3>Download PDF</h3>
+                <p>Preview your resume and download a professional PDF in one click.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT US SECTION -->
+    <section id="about" class="info-section alt-bg">
+        <h2>About Us</h2>
+        <div class="about-content">
+            <div class="about-text fade-right">
+                <p><strong>ResumeCraft</strong> is a modern, free resume builder designed for students and
+                    professionals.</p>
+                <p>Our mission is to make resume creation simple, fast, and accessible to everyone. With 6 trending
+                    templates, live preview, and one-click PDF download, you can create a standout resume in minutes.
+                </p>
+                <p>Built with <i class="fa-sharp-duotone fa-regular fa-heart" style="color: red;"></i> using HTML, CSS,
+                    JavaScript, and Firebase for a semester project.</p>
+            </div>
+            <div class="about-visual fade-left">
+                <div class="visual-box"><i class="fa-solid fa-rocket" style="color: rgb(24, 121, 206);"></i></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="info-section">
+        <h2>Contact Us</h2>
+        <div class="contact-container">
+            <div class="contact-info fade-up">
+                <div class="contact-item">
+                    <span class="icon"><i class="fa-regular fa-envelope" style="color: #26a2db;"></i></span>
+                    <div><strong>Email</strong>
+                        <p>support@resumecraft.com</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <span class="icon"><i class="fa-sharp-duotone fa-solid fa-phone" style="color: #1050da;"></i></span>
+                    <div><strong>Phone</strong>
+                        <p>+92 300 1234567</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <span class="icon"><i class="fa-solid fa-location-dot fa-beat" style="color: #ef4444;"></i></span>
+                    <div><strong>Location</strong>
+                        <p>Faisalabad, Pakistan</p>
+                    </div>
+                </div>
+            </div>
+            <form class="contact-form fade-up" style="animation-delay: 0.2s" id="contact-form">
+                <input type="text" id="contact-name" placeholder="Your Name" required>
+                <input type="email" id="contact-email" placeholder="Your Email" required>
+                <textarea id="contact-message" placeholder="Your Message" rows="4" required></textarea>
+                <button type="submit" class="btn btn-primary">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <p>&copy; 2026 ResumeCraft. All rights reserved.</p>
+        <p class="footer-sub">A Semester Project | Built with HTML, CSS, JS & Firebase</p>
+    </footer>
+
+    <!-- Preview Popup -->
+    <div id="preview-popup" class="preview-popup">
+        <div class="popup-content">
+            <button class="popup-close" onclick="closePopup()">&times;</button>
+            <iframe id="popup-iframe" style="width: 100%; height: 100%; border: none;"></iframe>
+        </div>
+    </div>
+
+    <!-- ✅ All Scripts in Correct Order -->
+
+    <!-- 1. Firebase Config -->
+    <script src="js/firebase-init.js"></script>
+
+    <!-- 2. Auth Flow -->
+    <script src="js/auth-flow.js"></script>
+
+    <!-- 3. Theme Toggle -->
+    <script src="js/theme-toggle.js"></script>
+
+    <!-- 4. Main App Logic -->
+    <script src="js/firestore-data.js"></script>
+</body>
+
+</html>
